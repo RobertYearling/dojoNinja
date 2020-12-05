@@ -1,0 +1,76 @@
+from dojoNinjaApp.models import *
+
+Dojo.objects.create(name = "Peanut", city = "Spread", state = "Wonder")
+Dojo.objects.create(name = "Butter", city = "Knife", state = "SaraLee")
+Dojo.objects.create(name = "Jelly", city = "Time", state = "Life")
+
+>>> c = Dojo.objects.get(id=1)
+>>> c.delete()
+(1, {'dojoNinjaApp.Ninja': 0, 'dojoNinjaApp.Dojo': 1})
+
+>>> c = Dojo.objects.get(id=2)
+>>> c.delete()
+(1, {'dojoNinjaApp.Ninja': 0, 'dojoNinjaApp.Dojo': 1})
+
+>>> c = Dojo.objects.get(id=3)
+>>> c.delete()
+(1, {'dojoNinjaApp.Ninja': 0, 'dojoNinjaApp.Dojo': 1})
+
+>>> Dojo.objects.create(name = "Bacon", city = "Hormell", state = "Wisconsin")
+<Dojo: Dojo object (4)>
+
+>>> Dojo.objects.create(name = "Lettuce", city = "Krispy", state = "Minnesota")
+<Dojo: Dojo object (5)>
+
+>>> Dojo.objects.create(name = "Tomato", city = "Red", state = "Colorado")
+<Dojo: Dojo object (6)>
+
+>>> Ninja.objects.create(first_name = "Jon", student = Dojo.objects.get(id=4), last_name = "Smith")
+<Ninja: Ninja object (1)>
+
+>>> Ninja.objects.create(first_name = "Eric", student = Dojo.objects.get(id=4), last_name = "Smithers")
+<Ninja: Ninja object (2)>
+
+>>> Ninja.objects.create(first_name = "Shawn", student = Dojo.objects.get(id=4), last_name = "Hennesey")
+<Ninja: Ninja object (3)>
+
+>>> Ninja.objects.create(first_name = "Van", student = Dojo.objects.get(id=5), last_name = "Halen")
+<Ninja: Ninja object (4)>
+
+>>> Ninja.objects.create(first_name = "Eddie", student = Dojo.objects.get(id=5), last_name = "Vedder")
+<Ninja: Ninja object (5)>
+
+>>> Ninja.objects.create(first_name = "Andrew", student = Dojo.objects.get(id=5), last_name = "W. K.")
+<Ninja: Ninja object (6)>
+
+>>> Ninja.objects.create(first_name = "Chef Boy", student = Dojo.objects.get(id=6), last_name = "RD")
+<Ninja: Ninja object (7)>
+
+>>> Ninja.objects.create(first_name = "Tollhouse", student = Dojo.objects.get(id=6), last_name = "Cookies")
+<Ninja: Ninja object (8)>
+
+>>> Ninja.objects.create(first_name = "Entenmann", student = Dojo.objects.get(id=6), last_name = "Frosted Donut")
+<Ninja: Ninja object (9)>
+
+>>> dojo.post_updated.all()
+<QuerySet [<Ninja: Ninja object (1)>, <Ninja: Ninja object (2)>, <Ninja: Ninja object (3)>]>
+
+>>> dojo = Dojo.objects.first()
+>>> students = dojo.post_update.all()
+Traceback (most recent call last):
+  File "<console>", line 1, in <module>
+AttributeError: 'Dojo' object has no attribute 'post_update'
+>>> dojo.post_updated.all()
+<QuerySet [<Ninja: Ninja object (1)>, <Ninja: Ninja object (2)>, <Ninja: Ninja object (3)>]>
+
+>>> dojo = Dojo.objects.last()
+>>> dojo.post_updated.all()
+<QuerySet [<Ninja: Ninja object (7)>, <Ninja: Ninja object (8)>, <Ninja: Ninja object (9)>]>
+
+>>> ninja9.student
+<Dojo: Dojo object (6)>
+
+>>> from dojoNinjaApp.models import *
+>>> Dojo.objects.create(name="Cheddar", city="Cheese", state="Wisconsin", desc="The land of Cheese and of Cheese Curds, enough said")
+<Dojo: Dojo object (7)>
+
